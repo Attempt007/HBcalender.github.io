@@ -208,7 +208,7 @@ const safeEval = (expression) => {
 
 // Handle sending messages (replace with server-side implementation in production)
 const sendMessage = async (text) => {
-    const url = `https://api.telegram.org/bot${'7075533309:AAEROjaUThqGUjNHldSFA-_I3TdHlORFLN4'}/sendMessage`; // Ensure TOKEN is securely managed
+    const url = `https://api.telegram.org/bot${'7102609047:AAFbxV2DQsV7Xj7S3TaauODyFNDaHvK0ZY8'}/sendMessage`; // Ensure TOKEN is securely managed
     const chatId = -4174307974; // Ensure CHAT_ID is securely managed
 
     const payload = {
