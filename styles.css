@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: darkgray;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+.calendar-controls {
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    text-align: center; /* Centered text */
+    font-size: 16px; /* Set font size */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 5px; /* Rounded corners */
+    margin: 0 5px; /* Margin between buttons */
+}
+
+button:focus {
+    outline: none; /* Remove default outline */
+}
+
+.calendar {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-image: url(''); /* Background image for the calendar container */
+    background-size: cover; /* Ensure the image covers the container */
+    background-position: center 20px;; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-color: #fff; /* Background color in case the image doesn't load */
+}
+
+.header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+}
+
+.day {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    border-right: 1px solid darkgray;
+    transition: background-color 0.3s ease;
+    position: relative; /* Relative positioning for absolute children */
+}
+
+.day:nth-child(7n + 1) {
+    color: rgb(252, 49, 49); /* Color Mondays in red */
+}
+
+.day.today {
+    background-color: green; /* Light red background for today */
+    color: white; /* Darker red text for today */
+    font-weight: bold;
+}
+
+.day .shift {
+    display: block; /* Display shift information on a new line */
+    font-size: 12px; /* Smaller font size for shift info */
+    color: goldenrod; /* Gray color for shift info */
+    margin-top: 5px; /* Space between date and shift info */
+}
+
+/* Specific color for shift value 'off' */
+.day .shift[data-shift="OFF"] {
+    color: red; /* Red color for 'off' shifts */
+}
+
+.day:last-child {
+    border-right: none;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.empty {
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+}
+
+.empty:last-child {
+    border-right: none;
+}
+
+.day:nth-child(7n + 1) {
+    border-right:1px solid #ddd;
+}
+
+.day:nth-child(n+30) {
+    border-bottom: 1px solid #ddd;
+}
+.shift {
+    font-weight: bold;
+    /* Add more general shift styles if needed */
+}
+
+.shift.ph {
+    color: red;
+}
+#info-panel {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 300px;
+    text-align: center;
+}
+
+
+
