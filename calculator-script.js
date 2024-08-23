@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const botToken = '7102609047:AAFbxV2DQsV7Xj7S3TaauODyFNDaHvK0ZY8'; // Replace with your bot token
     const chatId = '-4174307974'; // Replace with your chat ID
 
+    // Set default value for OPI input field
+    opiInput.value = '100';
+
     function calculateResults() {
         const opiPercentage = parseFloat(opiInput.value) || 100; // Default OPI percentage
         const bbt = parseFloat(bbtInput.value) || 0;
@@ -53,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Create result message
         const resultMessageStr = `
-            Results of ${bbt} HL at OPI ${opiPercentage}%\n
+            Results of ${bbt} HL at OPI ${opiPercentage}%\n\n
             🕒 Cal_Time : ${actualTimeStr}\n
             📅 Est_Time : ${estimatedTimeStr}\n
             ━━━━━━━━━━━━━━\n
