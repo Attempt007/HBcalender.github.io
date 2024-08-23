@@ -67,7 +67,7 @@ h1 {
     border-radius: 8px;
     background: #bdd0da; /* White background for result box */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for result box */
-    text-align: left;
+   
     white-space: pre-wrap; /* Preserve whitespace formatting */
     color: #100f0f; /* Dark gray for result text */
     max-width: 100%;
