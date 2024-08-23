@@ -71,6 +71,7 @@ h1 {
     white-space: pre-wrap; /* Preserve whitespace formatting */
     color: #100f0f; /* Dark gray for result text */
     max-width: 100%;
+    text-align: center;
     margin: 0 auto;
     font-size: 14px; /* Smaller font size for results */
 }
