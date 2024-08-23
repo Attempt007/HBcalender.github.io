@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BBT Calculator</h1>
+        <div class="inputs">
+            <label for="opi">OPI (%):</label>
+            <input type="number" id="opi" placeholder="Enter OPI percentage" />
+            <label for="bbt">BBT (HL):</label>
+            <input type="number" id="bbt" placeholder="Enter BBT value" />
+        </div>
+        <div id="resultMessage" class="result-box"></div>
+        <button id="sendButton" class="send-button" style="display: none;">Send to Telegram</button>
+    </div>
+
+    <script src="calculator-script.js"></script>
+</body>
+</html>
