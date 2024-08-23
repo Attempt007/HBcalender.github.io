@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Create result message
         const resultMessageStr = `
-            Results of ${bbt} HL at OPI ${opiPercentage}%\n\n
+            Results of ${bbt} HL at OPI ${opiPercentage}%\n
             🕒 Cal_Time : ${actualTimeStr}\n
             📅 Est_Time : ${estimatedTimeStr}\n
             ━━━━━━━━━━━━━━\n
@@ -88,12 +88,23 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
+    function handleDocumentClick(event) {
+        if (event.target !== opiInput && event.target !== bbtInput) {
+            // If the clicked target is not the input elements, blur the inputs
+            opiInput.blur();
+            bbtInput.blur();
+        }
+    }
+
     // Add event listeners to update results on input change
     opiInput.addEventListener('input', calculateResults);
     bbtInput.addEventListener('input', calculateResults);
 
     // Add event listener for the send button
     sendButton.addEventListener('click', sendToTelegram);
+
+    // Add event listener to handle clicks outside the input fields
+    document.addEventListener('click', handleDocumentClick);
 
     // Initialize results
     calculateResults();
