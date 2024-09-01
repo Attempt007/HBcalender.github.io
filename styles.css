@@ -5,6 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+   
     background-color: rgb(146, 177, 219);
 }
 
@@ -37,7 +38,7 @@ button:focus {
     grid-template-rows: auto 1fr;
     width: 100%;
     max-width: 600px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 8px;
     overflow: hidden;
     background-image: url=""; /* Background image for the calendar container */
@@ -51,14 +52,14 @@ button:focus {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     background-color: #f7a7a7;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid black;
 }
 
 .day {
     text-align: center;
     padding: 10px;
     font-weight: bold;
-    border-right: 1px solid darkgray;
+    border-right: 1px solid black;
     transition: background-color 0.3s ease;
     position: relative; /* Relative positioning for absolute children */
 }
@@ -76,7 +77,7 @@ button:focus {
 .day .shift {
     display: block; /* Display shift information on a new line */
     font-size: 12px; /* Smaller font size for shift info */
-    color: goldenrod; /* Gray color for shift info */
+    color: rgb(32, 32, 222); /* Gray color for shift info */
     margin-top: 5px; /* Space between date and shift info */
 }
 
@@ -96,7 +97,7 @@ button:focus {
 
 .empty {
     background-color: #f4d2a4;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid black;
 }
 
 .empty:last-child {
@@ -104,11 +105,11 @@ button:focus {
 }
 
 .day:nth-child(7n + 1) {
-    border-right:1px solid #ddd;
+    border-right:1px solid black;
 }
 
 .day:nth-child(n+30) {
-    border-bottom: 1px solid #ddd;
+    border-bottom: none;
 }
 .shift {
     font-weight: bold;
@@ -121,7 +122,7 @@ button:focus {
 #info-panel {
     margin-top: 20px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 5px;
     background-color: #f9f9f9;
     width: 300px;
