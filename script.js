@@ -13,20 +13,34 @@ const responseMessage = document.getElementById('response-message');
 let currentYear;
 let currentMonth;
 
-// Define the shift pattern and special shifts with descriptions
-const shifts = ['OFF', 'OFF', 'E', 'E', 'L', 'L', 'N', 'N'];
+// Old shift pattern
+const oldShifts = ['OFF', 'OFF', 'E', 'E', 'L', 'L', 'N', 'N']; // Example of old shifts
 
+// New shift pattern
+const newShifts = [
+    'E', 'E', 'E', 'E', 'E', 'E', // Early Shifts
+    'OFF', 'OFF', // Days Off
+    'L', 'L', 'L', 'L', 'L', 'L', // Late Shifts
+    'OFF', 'OFF', // Days Off
+    'N', 'N', 'N', 'N', 'N', 'N', // Night Shifts
+    'OFF', 'OFF'  // Days Off
+];
+
+// Define the end date for old shifts
+const shiftEndDate = new Date(2024, 8, 30); // September 30, 2024
+
+// Define special shifts with descriptions
 const specialShifts = {
     '2024-09-24': { code: '#PH', description: 'ទិវា​ប្រកាស​រដ្ឋ​ធម្មនុញ្ញ (Constitution Day)' },
     '2024-10-01': { code: '#PH', description: 'ពិធី​បុណ្យ​ភ្ជុំ​បិណ្ឌ (Pchum Ben Festival)' },
     '2024-10-02': { code: '#PH', description: 'ពិធី​បុណ្យ​ភ្ជុំ​បិណ្ឌ (Pchum Ben Festival)' },
     '2024-10-03': { code: '#PH', description: 'ពិធី​បុណ្យ​ភ្ជុំ​បិណ្ឌ (Pchum Ben Festival)' },
-    '2024-10-15': { code: '#PH', description: "ទិវា​ប្រារព្ធ​ពិធី​គោរព​ព្រះវិញ្ញាណក្ខន្ធ ព្រះករុណា​ព្រះបាទ​សម្តេច​ព្រះ នរោត្តម សីហនុ ព្រះមហាវីរក្សត្រ ព្រះ​វររាជ​បិតា​ឯករាជ្យ បូរណភាព​ទឹកដី និង​ឯកភាព​ជាតិ​ខ្មែរ (King Father's Commemoration Day)" },
-    '2024-10-29': { code: '#PH', description: "ព្រះ​រាជ​ពិធី​គ្រង​ព្រះ​បរម​រាជ​សម្បត្តិ​របស់​ ព្រះ​ករុណា​ព្រះ​បាទ​សម្តេច​ព្រះ​បរមនាថ នរោត្តម សីហមុនី ព្រះ​មហាក្សត្រ​នៃ​ព្រះរាជាណាចក្រ​កម្ពុជា (King's Coronation Day)" },
+    '2024-10-15': { code: '#PH', description: "ទិវា​ប្រារព្ធ​ពិធី​គោរព​ព្រះវិញ្ញាណក្ខន្ធ (King Father's Commemoration Day)" },
+    '2024-10-29': { code: '#PH', description: "ព្រះ​រាជ​ពិធី​គ្រង​ព្រះ​បរម​រាជ​សម្បត្តិ (King's Coronation Day)" },
     '2024-11-09': { code: '#PH', description: 'ពិធី​បុណ្យ​ឯករាជ្យ​ជាតិ (Independence Day)' },
-    '2024-11-14': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក បណ្ដែត​ប្រទីប និង​សំពះ​ព្រះ​ខែ អកអំបុក (Water Festival)' },
-    '2024-11-15': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក បណ្ដែត​ប្រទីប និង​សំពះ​ព្រះ​ខែ អកអំបុក (Water Festival)' },
-    '2024-11-16': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក បណ្ដែត​ប្រទីប និង​សំពះ​ព្រះ​ខែ អកអំបុក (Water Festival)' },
+    '2024-11-14': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
+    '2024-11-15': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
+    '2024-11-16': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
 };
 
 // Initialize the calendar to the current date
@@ -45,19 +59,40 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
 }
 
-// Get the shift for a given date, including special shift details
+// Get the appropriate shift for a given date
 function getShift(date) {
     const formattedDate = formatDate(date);
 
-    // Check for special shifts
+    // Check for special shifts first
     if (specialShifts[formattedDate]) {
         return specialShifts[formattedDate];
     }
 
-    // If no special shift, return the regular shift
-    const firstDate = new Date(currentYear, 0, 1); // January 1 of the current year
+    // If the date is after the shift end date, use the new shifts
+    if (date > shiftEndDate) {
+        return getNewShift(date);
+    }
+
+    // Use the old shifts
+    return getOldShift(date);
+}
+
+// Function to get the old shift
+function getOldShift(date) {
+    const firstDate = new Date(currentYear, 0, 1);
     const daysSinceStart = Math.floor((date - firstDate) / (1000 * 60 * 60 * 24));
-    return { code: shifts[daysSinceStart % shifts.length], description: '' };
+    const regularShiftCode = oldShifts[daysSinceStart % oldShifts.length];
+
+    return { code: regularShiftCode, description: '' };
+}
+
+// Function to get the new shift
+function getNewShift(date) {
+    const firstDate = new Date(2024, 9, 1); // October 1, 2024
+    const daysSinceStart = Math.floor((date - firstDate) / (1000 * 60 * 60 * 24));
+    const regularShiftCode = newShifts[daysSinceStart % newShifts.length];
+
+    return { code: regularShiftCode, description: '' };
 }
 
 // Render the calendar for the given month and year
@@ -141,92 +176,6 @@ async function handleFormSubmit(event) {
         responseMessage.textContent = `Error: ${error.message}`;
     }
 }
-
-// Process the input expression
-const processInput = async (expression) => {
-    try {
-        // Handle time calculation
-        const pattern = /(\d+(\.\d+)?)[Hh]$/;
-        const match = expression.match(pattern);
-        if (match) {
-            const bbt = parseFloat(match[1]);
-            const times = ((bbt * 100 / 0.33) / 60000);
-            const hours = Math.floor(times);
-            const mins = (times - hours) * 60;
-            const secs = (mins - Math.floor(mins)) * 60;
-
-            const actualTimeStr = `${hours}h ${Math.floor(mins)}m ${Math.floor(secs)}s`;
-
-            const now = new Date();
-            const estimatedTime = new Date(now.getTime() + (hours * 3600000) + (Math.floor(mins) * 60000) + (Math.floor(secs) * 1000));
-
-            let estimatedTimeStr;
-            if (estimatedTime.toDateString() === now.toDateString()) {
-                estimatedTimeStr = `Today, ${estimatedTime.toLocaleTimeString()}`;
-            } else if (estimatedTime.toDateString() === new Date(now.getTime() + 86400000).toDateString()) {
-                estimatedTimeStr = `Tomorrow, ${estimatedTime.toLocaleTimeString()}`;
-            } else {
-                estimatedTimeStr = `${estimatedTime.getDate()} ${estimatedTime.toLocaleString('default', { month: 'short' })}, ${estimatedTime.getFullYear()}`;
-            }
-
-            const cans = (bbt * 100 / 0.33);
-            const pal = cans / 5940;
-            const layer = (pal - Math.floor(pal)) * 20;
-            const can = (layer - Math.floor(layer)) * 297;
-            const pall = (cans / 24) / 1400;
-            const lay = (pall - Math.floor(pall)) * 14;
-            const cart = (lay - Math.floor(lay)) * 100;
-
-            return (
-                `Results of ${bbt} HL\n\n`
-                + `🕒 Cal_Time : ${actualTimeStr}\n`
-                + `📅 Est_Time : ${estimatedTimeStr}\n`
-                + "━━━━━━━━━━━━━━━━\n"
-                + `🥫 Et. Cans : ${Math.floor(pal)} P, ${Math.floor(layer)} L, ${Math.floor(can)} cans\n`
-                + "━━━━━━━━━━━━━━━━\n"
-                + `📦 Et. Cartons : ${Math.floor(pall)} P, ${Math.floor(lay)} L, ${Math.floor(cart)} pcs\n`
-                + "━━━━━━━━━━━━━━━━\n"
-            );
-        } else {
-            // Safe mathematical expression evaluation (consider using a library like math.js)
-            const result = safeEval(expression);
-            return `Results:\n\n${result}`;
-        }
-    } catch (error) {
-        throw new Error(`Error processing input: ${error.message}`);
-    }
-};
-
-// Basic evaluation function, replace with a library for safer operations
-const safeEval = (expression) => {
-    try {
-        return Function('"use strict";return (' + expression + ')')();
-    } catch (error) {
-        throw new Error('Invalid mathematical expression');
-    }
-};
-
-// Handle sending messages (replace with server-side implementation in production)
-const sendMessage = async (text) => {
-    const url = `https://api.telegram.org/bot${'7102609047:AAFbxV2DQsV7Xj7S3TaauODyFNDaHvK0ZY8'}/sendMessage`; // Ensure TOKEN is securely managed
-    const chatId = -4174307974; // Ensure CHAT_ID is securely managed
-
-    const payload = {
-        chat_id: chatId,
-        text: text
-    };
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-        throw new Error(`Failed to send message: ${response.statusText}`);
-    }
-
-    return response.json();
-};
 
 // Attach event listeners
 if (prevMonthBtn && nextMonthBtn) {
