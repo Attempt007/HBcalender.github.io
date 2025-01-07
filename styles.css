@@ -6,7 +6,7 @@ body {
     height: 100vh;
     margin: 0;
    
-    background-color: rgb(146, 177, 219);
+    background-color: lightpink;
 }
 
 h1 {
@@ -18,7 +18,7 @@ h1 {
 }
 
 button {
-    background-color: #4CAF50; /* Green background */
+    background-color: #6ed56e; /* Green background */
     border: none; /* Remove borders */
     color: white; /* White text */
     padding: 10px 20px; /* Some padding */
@@ -51,15 +51,16 @@ button:focus {
 .header {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    background-color: #f7a7a7;
+    background-color: #efaeae;
     border-bottom: 1px solid black;
+    
 }
 
 .day {
     text-align: center;
-    padding: 10px;
+    padding: 7px;
     font-weight: bold;
-    border-right: 1px solid black;
+    border-bottom: 2px solid black;
     transition: background-color 0.3s ease;
     position: relative; /* Relative positioning for absolute children */
 }
@@ -70,8 +71,9 @@ button:focus {
 
 .day.today {
     background-color: green; /* Light red background for today */
-    color: white; /* Darker red text for today */
+    color: rgb(232, 239, 9); /* Darker red text for today */
     font-weight: bold;
+    border-radius: 32px;
 }
 
 .day .shift {
@@ -87,7 +89,7 @@ button:focus {
 }
 
 .day:last-child {
-    border-right: none;
+    border-bottom: 2px solid black;
 }
 
 .days {
@@ -97,19 +99,19 @@ button:focus {
 
 .empty {
     background-color: #f4d2a4;
-    border-right: 1px solid black;
+    border-bottom: 2px solid black;
 }
 
 .empty:last-child {
-    border-right: none;
+    border-right: 2px solid black;
 }
 
 .day:nth-child(7n + 1) {
-    border-right:1px solid black;
+    border-bottom:2px solid black;
 }
 
 .day:nth-child(n+30) {
-    border-bottom: none;
+    border-bottom: 2px solid black;
 }
 .shift {
     font-weight: bold;
@@ -122,7 +124,7 @@ button:focus {
 #info-panel {
     margin-top: 20px;
     padding: 10px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 5px;
     background-color: #f9f9f9;
     width: 300px;
@@ -133,7 +135,7 @@ nav {
     text-decoration: none;
     padding: 10px 20px; /* Space around the content */
     text-align: center; /* Align the links to the right */
-    border-radius: 8px;
+    border-radius: 10px;
     
 }
 
