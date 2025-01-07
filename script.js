@@ -41,6 +41,28 @@ const specialShifts = {
     '2024-11-14': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
     '2024-11-15': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
     '2024-11-16': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
+    //2025
+    '2025-01-01': { code: '#PH', description: 'International New Year' },
+    '2025-01-07': { code: '#PH', description: 'Vitory Over Genocide Day' },
+    '2025-03-08': { code: '#PH', description: "International Women's Day" },
+    '2025-04-14': { code: '#PH', description: 'Khmer New Year' },
+    '2025-04-15': { code: '#PH', description: 'Khmer New Year' },
+    '2025-04-16': { code: '#PH', description: 'Khmer New Year' },
+    '2025-05-01': { code: '#PH', description: 'International Labor Day' },
+    '2025-05-11': { code: '#PH', description: 'Visak Bochea Day' },
+    '2025-05-14': { code: '#PH', description: "King Norodom Monineath Sihanouk's Birthday" },
+    '2025-05-15': { code: '#PH', description: 'Royal Plowing Ceremony' },
+    '2025-06-18': { code: '#PH', description: "Queen Norodom Monineath Sihanouk's Birthday" },
+    '2025-09-21': { code: '#PH', description: 'Pchum Ben Festival' },
+    '2025-09-22': { code: '#PH', description: 'Pchum Ben Festival'  },
+    '2025-09-23': { code: '#PH', description: 'Pchum Ben Festival'  },
+    '2025-09-24': { code: '#PH', description: 'Constitution Day' },
+    '2025-10-15': { code: '#PH', description: "ទិវា​ប្រារព្ធ​ពិធី​គោរព​ព្រះវិញ្ញាណក្ខន្ធ (King Father's Commemoration Day)" },
+    '2025-10-29': { code: '#PH', description: "ព្រះ​រាជ​ពិធី​គ្រង​ព្រះ​បរម​រាជ​សម្បត្តិ (King's Coronation Day)" },
+    '2025-11-04': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
+    '2025-11-05': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
+    '2025-11-06': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
+    '2025-11-09': { code: '#PH', description: 'ពិធី​បុណ្យ​ឯករាជ្យ​ជាតិ (Independence Day)' },
 };
 
 // Initialize the calendar to the current date
