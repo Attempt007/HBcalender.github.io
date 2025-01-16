@@ -3,28 +3,38 @@ document.addEventListener('DOMContentLoaded', function () {
     const bbtInput = document.getElementById('bbt');
     const resultMessage = document.getElementById('resultMessage');
     const sendButton = document.getElementById('sendButton');
+    const cphspan=document.getElementById('cph');
+    const speedb = document.getElementById('speed');
+    const volomnn = document.getElementById('vl');
+    //const speed  = 60000;
 
     const botToken = '7102609047:AAFbxV2DQsV7Xj7S3TaauODyFNDaHvK0ZY8'; // Replace with your bot token
     const chatId = '-4174307974'; // Replace with your chat ID
 
     // Set default value for OPI input field
     opiInput.value = '100';
+    speedb.value = '60000';
+    volomnn.value = '323';
 
     function calculateResults() {
         const opiPercentage = parseFloat(opiInput.value) || 100; // Default OPI percentage
         const bbt = parseFloat(bbtInput.value) || 0;
+        const speed=parseFloat(speedb.value);
+        const voloum=parseFloat(volomnn.value/1000);
 
         if (isNaN(bbt) || bbt <= 0) {
             resultMessage.textContent = 'Please enter a valid BBT value.';
             sendButton.style.display = 'none'; // Hide the send button if BBT is invalid
             return;
         }
+       
+        cphspan.innerHTML=`${speed} cph`;
 
         // Convert OPI percentage to milliseconds
-        const opiFraction = (opiPercentage / 100) * 60000;
+        const opiFraction = (opiPercentage / 100) * speed;
 
         // Calculate times in minutes
-        const times = ((bbt * 100 / 0.33) / opiFraction);
+        const times = ((bbt * 100 / voloum) / opiFraction);
         const hours = Math.floor(times);
         const mins = (times - hours) * 60;
         const secs = (mins - Math.floor(mins)) * 60;
@@ -46,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Calculate additional metrics
-        const cans = (bbt * 100 / 0.33);
+        const cans = (bbt * 100 / voloum);
         const pal = cans / 5940;
         const layer = (pal - Math.floor(pal)) * 20;
         const can = (layer - Math.floor(layer)) * 297;
@@ -98,10 +108,17 @@ document.addEventListener('DOMContentLoaded', function () {
             bbtInput.blur();
         }
     }
+    function cph(cphv){
+        const cphspan=document.getElementById('cph');
+        cphspan.innerHTML=cphv;
+
+    }
 
     // Add event listeners to update results on input change
     opiInput.addEventListener('input', calculateResults);
     bbtInput.addEventListener('input', calculateResults);
+    speed.addEventListener('input', calculateResults);
+    vl.addEventListener('input', calculateResults);
 
     // Add event listener for the send button
     sendButton.addEventListener('click', sendToTelegram);
