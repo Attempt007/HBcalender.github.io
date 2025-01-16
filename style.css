@@ -53,22 +53,16 @@ h1 {
     background-color: #f5f5f5; /* Light gray background for inputs */
     transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
 }
-.c1 label
-{
-    display: inline-block;
-    text-align: center;
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 20px;
-}
+.c1 label,
 .c2 input
 {
     display: inline-block;
     text-align: center;
     margin-bottom: 10px;
     padding: 5px;
-    width: 20px;
+    width: 70px;
 }
+
 
 
 .inputs input:focus {
