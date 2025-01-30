@@ -25,9 +25,13 @@ const newShifts = [
     'N', 'N', 'N', 'N', 'N', 'N', // Night Shifts
     'OFF', 'OFF'  // Days Off
 ];
+// lastestShifts pattern
+const lastestShifts = ['N', 'N','OFF', 'OFF', 'E', 'E', 'L', 'L' ]; // Example of lastestShifts
 
-// Define the end date for old shifts
+// Define the end date for old shift
 const shiftEndDate = new Date(2024, 8, 30); // September 30, 2024
+// Define the end date for new shift
+const newshiftEndDate = new Date(2025, 0, 31); // September 30, 2024
 
 // Define special shifts with descriptions
 const specialShifts = {
@@ -63,7 +67,7 @@ const specialShifts = {
     '2025-11-05': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
     '2025-11-06': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
     '2025-11-09': { code: '#PH', description: 'ពិធី​បុណ្យ​ឯករាជ្យ​ជាតិ (Independence Day)' },
-    '2025-02-03': { code: 'MOVE', description: 'Moving day (Packaging => Engineering)' },
+    '2025-02-03': { code: 'MOVE', description: 'Moving from Packaging => Engineering ' },
 };
 
 // Initialize the calendar to the current date
@@ -92,9 +96,13 @@ function getShift(date) {
     }
 
     // If the date is after the shift end date, use the new shifts
-    if (date > shiftEndDate) {
+    if (date > shiftEndDate&&date<=newshiftEndDate) {
         return getNewShift(date);
     }
+    if(date>newshiftEndDate){
+        return getlastesShift(date);
+    }
+
 
     // Use the old shifts
     return getOldShift(date);
@@ -114,6 +122,14 @@ function getNewShift(date) {
     const firstDate = new Date(2024, 9, 1); // October 1, 2024
     const daysSinceStart = Math.floor((date - firstDate) / (1000 * 60 * 60 * 24));
     const regularShiftCode = newShifts[daysSinceStart % newShifts.length];
+
+    return { code: regularShiftCode, description: '' };
+}
+// Function to get the lastetshift
+function getlastesShift(date) {
+    const firstDate = new Date(2025, 1, 1); // febrary 1, 2025
+    const daysSinceStart = Math.floor((date - firstDate) / (1000 * 60 * 60 * 24));
+    const regularShiftCode = lastestShifts[daysSinceStart % lastestShifts.length];
 
     return { code: regularShiftCode, description: '' };
 }
