@@ -31,7 +31,7 @@ const lastestShifts = ['N', 'N','OFF', 'OFF', 'E', 'E', 'L', 'L' ]; // Example o
 // Define the end date for old shift
 const shiftEndDate = new Date(2024, 8, 30); // September 30, 2024
 // Define the end date for new shift
-const newshiftEndDate = new Date(2025, 0, 31); // September 30, 2024
+const newshiftEndDate = new Date(2025, 1, 1); // September 30, 2024
 
 // Define special shifts with descriptions
 const specialShifts = {
@@ -127,7 +127,7 @@ function getNewShift(date) {
 }
 // Function to get the lastetshift
 function getlastesShift(date) {
-    const firstDate = new Date(2025, 1, 1); // febrary 1, 2025
+    const firstDate = new Date(2025, 1, 2); // febrary 2, 2025
     const daysSinceStart = Math.floor((date - firstDate) / (1000 * 60 * 60 * 24));
     const regularShiftCode = lastestShifts[daysSinceStart % lastestShifts.length];
 
