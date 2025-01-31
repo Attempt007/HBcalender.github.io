@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Set default value for OPI input field
     opiInput.value = '100';
     speedb.value = '60000';
-    volomnn.value = '323';
+    volomnn.value = '321.5';
 
     function calculateResults() {
         const opiPercentage = parseFloat(opiInput.value) || 100; // Default OPI percentage
