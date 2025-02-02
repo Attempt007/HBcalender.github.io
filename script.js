@@ -67,6 +67,7 @@ const specialShifts = {
     '2025-11-05': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
     '2025-11-06': { code: '#PH', description: 'ព្រះ​រាជ​ពិធី​បុណ្យ​អុំ​ទូក (Water Festival)' },
     '2025-11-09': { code: '#PH', description: 'ពិធី​បុណ្យ​ឯករាជ្យ​ជាតិ (Independence Day)' },
+    '2025-12-29': { code: '#PH', description: 'Peace Day' },
     '2025-02-03': { code: 'MOVE', description: 'Moving from Packaging => Engineering ' },
 };
 
